@@ -2,6 +2,7 @@ package com.skiply.student.domain;
 
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import jdk.jfr.DataAmount;
@@ -10,7 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
