@@ -1,0 +1,163 @@
+openapi: 3.0.3
+info:
+  title: Student Service API
+  version: 1.0.0
+  description: API for managing student registration and retrieval
+
+paths:
+  /api/students:
+    post:
+      tags:
+        - Student
+      operationId: registerNewStudent
+      summary: Add a new student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentRequest'
+      responses:
+        '201':
+          description: Student added Sucessfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+        default:
+          $ref: '#/components/responses/GenericDefaultResponse'
+
+  /api/students/{id}:
+    get:
+      tags:
+        - Student
+      operationId: getStudentById
+      summary: Retrieve student by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Student found
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+        '404':
+          $ref: '#/components/responses/Generic404Response'
+        default:
+          $ref: '#/components/responses/GenericDefaultResponse'
+
+    put:
+      tags:
+        - Student
+      operationId: updateStudentById
+      summary: Update an existing student
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentRequest'
+      responses:
+        '200':
+          description: Student updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+        '404':
+          $ref: '#/components/responses/Generic404Response'
+        default:
+          $ref: '#/components/responses/GenericDefaultResponse'
+
+    delete:
+      tags:
+        - Student
+      operationId: deleteStudentById
+      summary: Delete student by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: Student deleted successfully
+        '404':
+          $ref: '#/components/responses/Generic404Response'
+        default:
+          $ref: '#/components/responses/GenericDefaultResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        detail:
+          type: string
+        reason:
+          type: string
+      required:
+        - name
+        - code
+        - detail
+
+    StudentRequest:
+      type: object
+      properties:
+        studentName:
+          type: string
+        grade:
+          type: string
+        mobileNumber:
+          type: string
+        schoolName:
+          type: string
+      required:
+        - studentName
+        - grade
+
+    StudentResponse:
+      allOf:
+        - $ref: '#/components/schemas/StudentRequest'
+        - type: object
+          properties:
+            studentId:
+              type: integer
+              format: int32
+              readOnly: true
+
+  responses:
+    Generic404Response:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    GenericDefaultResponse:
+      description: This is the default internal server error. System was not able to process this request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

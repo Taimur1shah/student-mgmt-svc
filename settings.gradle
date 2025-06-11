@@ -1,0 +1,6 @@
+rootProject.name = 'student-mgmt-svc'
+include 'student-api'
+include 'student-application'
+include 'student-domain'
+include 'student-infrastructure'
+
