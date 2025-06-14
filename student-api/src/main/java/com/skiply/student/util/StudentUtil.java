@@ -1,11 +1,11 @@
 package com.skiply.student.util;
 
-import com.skiply.student.api.model.ErrorResponse;
+import com.skiply.student.api.model.APIErrorResponse;
 
 public class StudentUtil {
 
-  public ErrorResponse getNotFoundErrorResponse(){
-    ErrorResponse errorResponse = new ErrorResponse();
+  public APIErrorResponse getNotFoundErrorResponse(){
+    APIErrorResponse errorResponse = new APIErrorResponse();
     errorResponse.setCode("404");
     errorResponse.setDetail("Resource Not Found");
     errorResponse.setName("NOT_FOUND");
