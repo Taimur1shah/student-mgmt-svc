@@ -14,8 +14,8 @@ public class StudentRepoImpl implements StudentRepository {
   }
 
   @Override
-  public void save(Student student) {
-    jpaRepository.save(student);
+  public Student save(Student student) {
+    return jpaRepository.save(student);
   }
 
   @Override

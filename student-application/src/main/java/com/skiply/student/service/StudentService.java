@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface StudentService {
 
-  void saveStudent(Student student);
+  Student saveStudent(Student student);
 
   Optional<Student> getStudentById(Integer studentId);
 

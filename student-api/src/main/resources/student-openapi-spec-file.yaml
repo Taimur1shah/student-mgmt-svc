@@ -5,7 +5,7 @@ info:
   description: API for managing student registration and retrieval
 
 paths:
-  /api/students:
+  /student-service/api/students:
     post:
       tags:
         - Student
@@ -24,11 +24,14 @@ paths:
             application/json:
               schema:
                 type: object
-                additionalProperties: false
+                properties:
+                  studentId:
+                    type: integer
+                    format: int32
         default:
           $ref: '#/components/responses/GenericDefaultResponse'
 
-  /api/students/{id}:
+  /student-service/api/students/{id}:
     get:
       tags:
         - Student

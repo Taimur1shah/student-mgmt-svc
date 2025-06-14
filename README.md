@@ -9,6 +9,7 @@ Steps
 3. Run the application , it will start on port 8080
 4. Import the Postman collection and execute the curl requests
 5. H2 db console can be connected in browser
+   http://localhost:8080/h2-console
    JDBC URL : jdbc:h2:mem:studentdb
    userName : sa
 6.OpenAPI Spec file is located at
