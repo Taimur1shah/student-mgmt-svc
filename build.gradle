@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.5'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'jacoco'
 }
 
 group 'com.skiply.student'
@@ -12,7 +13,6 @@ targetCompatibility = '17'
 allprojects {
     repositories {
         mavenCentral()
-
     }
     afterEvaluate {
         springBoot {
@@ -22,10 +22,28 @@ allprojects {
         tasks.withType(Jar) {
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         }
+
+        tasks.withType(Test).configureEach {
+            useJUnitPlatform()
+
+            testLogging {
+                events "passed", "skipped", "failed"
+                showStandardStreams = true
+            }
+
+            finalizedBy jacocoTestReport
+        }
+
+        jacocoTestReport {
+            dependsOn test
+            reports {
+                xml.required = true
+                csv.required = false
+                html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+            }
+        }
     }
 }
-
-
 
 ext {
     springdocVersion = '2.5.0'
