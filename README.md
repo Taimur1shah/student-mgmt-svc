@@ -14,19 +14,21 @@ Repository for Student Management microservice , responsible for student related
 
 1. This microservice need to be run first
 2. Compile the Project using gradle build in cmd
+
    ./gradlew clean build
-   OpenAPI tool  will create the StudentApi controller interface stub
+
+3. OpenAPI tool  will create the StudentApi controller interface stub
    student-api --> build -->classes --> com.skiply.student.api --> StudentApi
    All the compilation errors will be resolved as the imported classes will be generated
-3. Run the application , it will start on port 8080
-4. Import the Postman collection and execute the curl requests
-5. H2 db console can be connected in browser
+4. Run the application , it will start on port 8080
+5. Import the Postman collection and execute the curl requests
+6. H2 db console can be connected in browser
    http://localhost:8080/h2-console
    JDBC URL : jdbc:h2:mem:studentdb
    userName : sa 
-6. .OpenAPI Spec file is located at
+7. .OpenAPI Spec file is located at
    student-mgmt-svc/student-api/src/main/resources/student-openapi-spec-file.yaml
-7. Performance, Scalability, and Reliability Targets
+8. Performance, Scalability, and Reliability Targets
    health checks and readiness
    http://localhost:8080/actuator/metrics
    http://localhost:8080/actuator/health/readiness
