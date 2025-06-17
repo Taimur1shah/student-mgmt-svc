@@ -1,5 +1,5 @@
 # student-mgmt-svc
-Repository for Student Management microservice , responsible for student related activities
+Repository for Student Management microservice , responsible for student CRUD operations
 
 ## Techonology Stack
 1. Java 17
@@ -21,7 +21,8 @@ Repository for Student Management microservice , responsible for student related
    student-api --> build -->classes --> com.skiply.student.api --> StudentApi
    All the compilation errors will be resolved as the imported classes will be generated
 4. Run the application , it will start on port 8080
-5. Import the Postman collection and execute the curl requests
+5. Import the Postman collection 'Students.postman_collection.json' , located in project root directory
+   and execute the curl requests
 6. H2 db console can be connected in browser
    http://localhost:8080/h2-console
    JDBC URL : jdbc:h2:mem:studentdb
